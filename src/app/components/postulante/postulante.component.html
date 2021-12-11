@@ -1,0 +1,79 @@
+<div class="row m-3">
+    <p class="lead mb-4">A continuación se muestra la lista de postulantes que se
+        registraron mediante formulario, favor selecciona los que consideres que
+        cumplen el perfil y dale clic en en botón <i class="fas fa-check-circle"></i>, en caso no sean aptos para el
+        puesto, clic en el botón <i class="fas fa-times-circle"></i>. Al dar clic en cualquiera de los botones de aprobación o rechazo, le llegará una notificacion
+        vía e-mail <i class="fas fa-envelope"></i> al colaborador para indicarle el estado de su postulación.</p>
+</div>
+
+<div class="card m-3">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm table-bordered">
+                <thead class="table-dark text-center">
+                    <tr style="vertical-align: middle">
+                        <th scope="col">ID</th>
+                        <th scope="col">NOMBRE DEL POSTULANTE</th>
+                        <th scope="col">EDAD</th>
+                        <th scope="col">AREA DE LABORES</th>
+                        <th scope="col">PUESTO ACTUAL</th>
+                        <th scope="col">A&Ntilde;OS EN EL PUESTO ACTUAL</th>
+                        <th scope="col">PUESTO AL QUE POSTULA</th>
+                        <th scope="col">MOTIVO DE LA POSTULACION</th>
+                        <th scope="col">FECHA DE REVISIÓN</th>
+                        <th scope="col">ESTADO DE APROBACION</th>
+                        <th scope="col">APROBAR</th>
+                        <th scope="col">DESCARTAR</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let postulante of postulantes" style="vertical-align: middle">
+                        <td>{{postulante.id}}</td>
+                        <td>{{postulante.nombre}}</td>
+                        <td>{{postulante.edad}}</td>
+                        <td>{{postulante.area}}</td>
+                        <td>{{postulante.puestoActual}}</td>
+                        <td>{{postulante.aniosPuesto}}</td>
+                        <td>{{postulante.puestoPostula}}</td>
+                        <td>{{postulante.motivoPostula}}</td>
+                        <td>{{postulante.fechaPostula | date:"dd-MM-yyyy"}}</td>
+                        <td>{{postulante.estado}}</td>
+                        <td><button class="btn btn-sm btn-success" (click)="guardarPostulante(postulante)" [disabled]="postulante.estado == 'APROBADO'"><i class="fas fa-check"></i></button></td>
+                        <td><button class="btn btn-sm btn-danger" (click)="mostrarVentanaEliminar(postulante)" [disabled]="postulante.estado == 'APROBADO'"><i class="fas fa-times"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between p-2">
+            <select class="" [(ngModel)]="pageSize" (ngModelChange)="consultarPostulante()">
+                <option [ngValue]="9">9 items por página</option>
+                <option [ngValue]="15">15 items por página</option>
+                <option [ngValue]="20">20 items por página</option>
+            </select>
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                (pageChange)="consultarPostulante()">
+            </ngb-pagination>
+        </div>
+        <!--<ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Formulario de registro de animes</h4>
+                </div>
+                <form #formAnime="ngForm" (ngSubmit)="guardarPostulante(formAnime?.value)" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="txtNombre">Nombre de anime: *</label>
+                            <input type="text" id="txtNombre" name="nombre" class="form-control" [(ngModel)]="anime!.nombre" #nombre="ngModel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAnioLanzamiento">A&ntilde;o de lanzamiento: *</label>
+                            <input type="text" id="txtAnioLanzamiento" name="anio" class="form-control" [(ngModel)]="anime!.anio" #anio="ngModel" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')"><i class="fas fa-times"></i> Cancelar</button>
+                    </div>
+                </form>
+            </ng-template>-->
+    </div>
+</div>
