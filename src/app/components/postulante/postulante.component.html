@@ -2,8 +2,8 @@
     <p class="lead mb-4">A continuación se muestra la lista de postulantes que se
         registraron mediante formulario, favor selecciona los que consideres que
         cumplen el perfil y dale clic en en botón <i class="fas fa-check-circle"></i>, en caso no sean aptos para el
-        puesto, clic en el botón <i class="fas fa-times-circle"></i>. Al dar clic en cualquiera de los botones de aprobación o rechazo, le llegará una notificacion
-        vía e-mail <i class="fas fa-envelope"></i> al colaborador para indicarle el estado de su postulación.</p>
+        puesto, clic en el botón <i class="fas fa-trash-alt"></i>. Al dar clic en cualquiera de los botones de aprobación o rechazo, le llegará una notificacion
+        vía <i class="fas fa-envelope"></i> e-mail al colaborador para indicarle el estado de su postulación.</p>
 </div>
 
 <div class="card m-3">
@@ -39,7 +39,7 @@
                         <td>{{postulante.fechaPostula | date:"dd-MM-yyyy"}}</td>
                         <td>{{postulante.estado}}</td>
                         <td><button class="btn btn-sm btn-success" (click)="guardarPostulante(postulante)" [disabled]="postulante.estado == 'APROBADO'"><i class="fas fa-check"></i></button></td>
-                        <td><button class="btn btn-sm btn-danger" (click)="mostrarVentanaEliminar(postulante)" [disabled]="postulante.estado == 'APROBADO'"><i class="fas fa-times"></i></button></td>
+                        <td><button class="btn btn-sm btn-danger" (click)="mostrarVentanaEliminar(postulante)" [disabled]="postulante.estado == 'APROBADO'"><i class="fas fa-trash-alt"></i></button></td>
                     </tr>
                 </tbody>
             </table>
